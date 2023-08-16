@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  Hello world
+  <input id="inp" placeholder="Enter title">
+  <input id="pni" placeholder="Enter body">
+  <button id="btn">click here</button>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      let a = document.getElementById("inp");
+      let b = document.getElementById("pni");
+      let c = document.getElementById("btn");
+
+      c.addEventListener('click', async () => {
+        let sum = a.value;
+        let su = b.value;
+
+        console.log("Title:", sum);
+        console.log("Body:", su);
+
+        let options = {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify({
+            title: sum,
+            body: su,
+            userId: 1100,
+          }),
+        };
+
+        let p = await fetch('https://jsonplaceholder.typicode.com/posts', options);
+        let response = await p.json();
+        console.log("Response:", response);
+      });
+    });
+
+  </script>
+
+  <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"></script>
+</body>
+
+</html>
